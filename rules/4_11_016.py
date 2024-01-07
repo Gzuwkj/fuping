@@ -7,10 +7,7 @@ def process(record: Person):
 
     if record.objectInfo.get('户类型') == '脱贫户' \
             and record.objectInfo.get('综合保障') == '残疾人补贴' \
-            and record.objectInfo.get('健康状况') != '残疾' \
-            and len(record.objectInfo.get('文化程度')) == 0\
-            and len(record.objectInfo.get('在校生状况')) == 0\
-            and len(record.objectInfo.get('失学或辍学原因')) == 0:
+            and record.objectInfo.get('健康状况') != '残疾' :
 
         bRaise = True
         for member in record.family.member:

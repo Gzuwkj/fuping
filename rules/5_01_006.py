@@ -14,12 +14,16 @@ def process(record: Person):
     if record.outInfo is None:
         return
 
+    outInfoRecord = []
     for outInfo in record.outInfo:
         if record.objectInfo.get('户类型') == '脱贫户' \
                 and '公益岗位' in record.objectInfo.get('就业渠道（易地搬迁后扶使用）') \
                 and outInfo.get('就业渠道') == '公益岗位'\
                 and getAge(record.objectInfo.get('证件号码')) >= 70:
-            raise Error(no='5_01_006', objectInfo=[record.objectInfo], outInfo=[record.outInfo]
+            outInfoRecord.append(outInfo)
+
+    if len(outInfoRecord) != 0:
+        raise Error(no='5_01_006', objectInfo=[record.objectInfo], outInfo=outInfoRecord
                         , msg='70岁及以上脱贫人口参加公益性岗位')
 
 
