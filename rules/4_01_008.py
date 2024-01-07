@@ -16,5 +16,5 @@ def process(record: Person):
 
 
         if bRaise:
-            raise Error(no='4_01_008', objectInfo=record.objectInfo
+            raise Error(no='4_01_008', objectInfo=[record.objectInfo]
                         , msg='一、二级（重度）肢体残疾监测对象家庭成员有普通劳动能力')

@@ -12,5 +12,5 @@ def process(record: Person):
             and record.objectInfo.get('是否危房户') != '否'\
             and record.objectInfo.get('是否义务教育阶段适龄儿童少年失学辍学') != '否':
 
-        raise Error(no='4_11_007', objectInfo=record.objectInfo
+        raise Error(no='4_11_007', objectInfo=[record.objectInfo]
                     , msg='监测对象户三保障和饮水状况为有家庭成员未参加城乡居民（职工）基本医疗保险但致（返）贫风险没有因病')

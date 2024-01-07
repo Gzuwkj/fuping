@@ -12,7 +12,7 @@ def process(record: Person):
                 and record.objectInfo.get('享受特困供养政策情况') != '未享受' \
                 and len(record.objectInfo.get('享受特困供养政策情况')) != 0 \
                 and '外出务工' in strBuf:
-            raise Error(no='5_01_004', objectInfo=record.objectInfo, outInfo=record.outInfo
+            raise Error(no='5_01_004', objectInfo=[record.objectInfo], outInfo=[record.outInfo]
                         , msg='享受特困供养的脱贫人口外出务工（基础信息） ')
 
 

@@ -10,7 +10,7 @@ def process(record: Person):
     if record.objectInfo.get('户类型') == '脱贫户' \
         and '务工' in record.objectInfo.get('就业渠道（易地搬迁后扶使用）') \
         and len(phoneStr) != 11:
-        raise Error(no='2_01_014', objectInfo=record.objectInfo
+        raise Error(no='2_01_014', objectInfo=[record.objectInfo]
                     , msg='务工脱贫人口联系电话不符合手机号码校验规则')
 
 

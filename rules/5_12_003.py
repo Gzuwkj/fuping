@@ -11,7 +11,7 @@ def process(record: Person):
         and len(record.objectInfo.get('文化程度')) == 0\
         and len(record.objectInfo.get('在校生状况')) == 0\
         and len(record.objectInfo.get('失学或辍学原因')) == 0:
-        raise Error(no='5_12_003', objectInfo=record.objectInfo
+        raise Error(no='5_12_003', objectInfo=[record.objectInfo]
                     , msg='享受特困供养的防止返贫监测对象人口外出务工（基础信息）')
 
 

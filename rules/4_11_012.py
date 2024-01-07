@@ -11,5 +11,5 @@ def process(record: Person):
             and record.objectInfo.get('工资性收入') == 0 \
             and record.objectInfo.get('风险是否已消除0') == '是' :
 
-        raise Error(no='4_11_012', objectInfo=record.objectInfo
+        raise Error(no='4_11_012', objectInfo=[record.objectInfo]
                         , msg='已消除风险户享受就业或者公益性岗位帮扶但消除后无工资性收入')

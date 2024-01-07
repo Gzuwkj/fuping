@@ -13,7 +13,7 @@ def process(record: Person):
             and len(record.objectInfo.get('文化程度')) == 0\
             and len(record.objectInfo.get('在校生状况')) == 0\
             and len(record.objectInfo.get('失学或辍学原因')) == 0:
-            raise Error(no='5_12_002', record=record
+            raise Error(no='5_12_002', outInfo=[record.outInfo]
                         , msg='县外务工的防止返贫监测对象人口填写了"就业渠道"中的"公益性岗位"和"帮扶车间"')
 
 

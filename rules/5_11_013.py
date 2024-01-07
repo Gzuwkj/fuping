@@ -13,7 +13,7 @@ def process(record: Person):
         and len(record.objectInfo.get('文化程度')) == 0\
         and len(record.objectInfo.get('在校生状况')) == 0\
         and len(record.objectInfo.get('失学或辍学原因')) == 0:
-        raise Error(no='5_11_013', objectInfo=record.objectInfo
+        raise Error(no='5_11_013', objectInfo=[record.objectInfo]
                     , msg='防止返贫监测对象享风险消除时享受产业帮扶但风险消除的收入模块中无生产经营性收入')
 
 

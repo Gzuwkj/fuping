@@ -13,6 +13,6 @@ def process(record: Person):
                 and '帮扶车间' in outInfo.get('就业渠道'):
 
 
-            raise Error(no='5_01_003', outInfo=record.outInfo, objectInfo=record.objectInfo
+            raise Error(no='5_01_003', outInfo=[record.outInfo], objectInfo=[record.objectInfo]
                             , msg='县外务工的脱贫人口填写了"就业渠道"中的"公益性岗位"和"帮扶车间"(务工月监测)')
 

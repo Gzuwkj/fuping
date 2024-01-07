@@ -18,7 +18,7 @@ def process(record: Person):
         and len(record.objectInfo.get('文化程度')) == 0 \
         and len(record.objectInfo.get('在校生状况')) == 0 \
         and len(record.objectInfo.get('失学或辍学原因')) == 0:
-        raise Error(no='5_12_005', objectInfo=record.objectInfo, outInfo=record.outInfo
+        raise Error(no='5_12_005', objectInfo=[record.objectInfo], outInfo=[record.outInfo]
                     , msg='70岁及以上防止返贫监测对象人口参加公益性岗位')
 
 

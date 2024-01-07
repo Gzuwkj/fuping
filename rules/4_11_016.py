@@ -20,5 +20,5 @@ def process(record: Person):
 
 
         if bRaise:
-            raise Error(no='4_11_016', objectInfo=record.objectInfo
+            raise Error(no='4_11_016', objectInfo=[record.objectInfo]
                         , msg='防止返贫监测对象户享受残疾人补贴帮扶措施但家中无残疾人口(含自然减少人员)')

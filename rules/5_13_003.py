@@ -19,7 +19,7 @@ def process(record: Person):
     if record.objectInfo.get('户类型') == '脱贫户' \
         and len(record.objectInfo.get('监测对象类别')) != 0 \
         and not check_phone(phoneStr):
-        raise Error(no='5_13_003', objectInfo=record.objectInfo
+        raise Error(no='5_13_003', objectInfo=[record.objectInfo]
                     , msg='监测对象户联系电话为空或不符合规则')
 
 

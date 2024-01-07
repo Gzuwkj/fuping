@@ -12,6 +12,6 @@ def process(record: Person):
             and (len(outInfo.get('所属行业')) == 0
                  or len(outInfo.get('务工企业名称')) == 0) :
 
-            raise Error(no='5_15_008', outInfo=record.outInfo
+            raise Error(no='5_15_008', outInfo=[record.outInfo]
                         , msg='脱贫人口务工监测有计划外出务工未填写务工需求')
 

@@ -11,5 +11,5 @@ def process(record: Person):
             and record.objectInfo.get('风险是否已消除0') == '否' \
             and record.objectInfo.get('实施开发式帮扶措施情况') != '已实施':
 
-        raise Error(no='5_11_030', objectInfo=record.objectInfo
+        raise Error(no='5_11_030', objectInfo=[record.objectInfo]
                         , msg='未消除风险且有劳动力的监测对象已登记开发式帮扶措施但选择已实施开发式帮扶措施为尚未实施或空')
