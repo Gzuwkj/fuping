@@ -18,4 +18,5 @@ def process(record: Person):
         thisHuId = str(record.objectInfo.get('户编号'))
         if count >= len(record.family.member) / 2 and thisHuId not in huIds:
             huIds.add(thisHuId)
-            raise Error(no='5_11_029', record=record, msg='未消除风险的监测对象(4人户及以上)一半以上家庭成员有劳动能力（普+技）但风险类型为缺劳动力, 户编号:' + str(thisHuId))
+            raise Error(no='5_11_029', objectInfo=record.objectInfo
+                        , msg='未消除风险的监测对象(4人户及以上)一半以上家庭成员有劳动能力（普+技）但风险类型为缺劳动力, 户编号:' + str(thisHuId))

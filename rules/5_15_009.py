@@ -3,15 +3,16 @@ from error import Error
 import pandas as pd
 
 def process(record: Person):
-    if record.objectInfo is None:
+
+    if record.outInfo is None:
         return
 
-    strBuf = record.objectInfo.get('就业渠道（易地搬迁后扶使用）')
-    if not pd.isna(strBuf) :
-        if record.objectInfo.get('户类型') == '脱贫户' \
-            and '外出务工' in strBuf \
-            and not pd.isna(record.objectInfo.get('务工所在地')) :
+    for outInfo in record.outInfo:
+        if outInfo.get('户类型') == '脱贫户' \
+            and '外出务工' in outInfo.get('就业渠道') \
+            and len(outInfo.get('监测对象类别')) ==0\
+            and (len(outInfo.get('所属行业')) == 0
+                 or len(outInfo.get('务工企业名称')) == 0) :
 
-            raise Error(no='5_15_009', record=record
+            raise Error(no='5_15_009', outInfo=record.outInfo
                         , msg='监测对象人口务工监测有计划外出务工未填写务工需求')
-

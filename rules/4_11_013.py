@@ -12,5 +12,5 @@ def process(record: Person):
             and record.objectInfo.get('转移性收入') == 0 \
             and record.objectInfo.get('风险是否已消除0') == '是' :
 
-        raise Error(no='4_11_013', record=record
+        raise Error(no='4_11_013', objectInfo=record.objectInfo
                         , msg='已消除风险户享受低保、特困供养、残疾人补贴但消除后无转移性收入')

@@ -19,5 +19,5 @@ def process(record: Person):
                 bRaise = False
 
         if bRaise:
-            raise Error(no='4_11_011', record=record
+            raise Error(no='4_11_011', objectInfo=record.objectInfo
                         , msg='整户无劳动力监测对象户已消除风险(含自然减少)')

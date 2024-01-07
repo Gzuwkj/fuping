@@ -11,14 +11,15 @@ def getAge(idcard):
 def process(record: Person):
     if record.objectInfo is None:
         return
+    if record.outInfo is None:
+        return
 
-    age = getAge(record.objectInfo.get('证件号码'))
-    strBuf = record.objectInfo.get('就业渠道（易地搬迁后扶使用）')
-    if not pd.isna(strBuf) :
+    for outInfo in record.outInfo:
         if record.objectInfo.get('户类型') == '脱贫户' \
-            and '公益岗位' in strBuf \
-            and age >= 70:
-            raise Error(no='5_01_006', record=record
+                and '公益岗位' in record.objectInfo.get('就业渠道（易地搬迁后扶使用）') \
+                and outInfo.get('就业渠道') == '公益岗位'\
+                and getAge(record.objectInfo.get('证件号码')) >= 70:
+            raise Error(no='5_01_006', objectInfo=record.objectInfo, outInfo=record.outInfo
                         , msg='70岁及以上脱贫人口参加公益性岗位')
 
 
