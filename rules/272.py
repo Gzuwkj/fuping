@@ -28,5 +28,5 @@ def process(record: Person):
     if record.objectInfo is None:
         return
     if record.objectInfo['劳动技能'] == '弱劳动力或半劳动力' and 14 <= age < 60:
-        raise Error(no=os.path.basename(__file__), objectInfo=[record.objectInfo],
+        raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
                     msg='1111_14-16（含）-60周岁（不含）健康监测对象人口劳动能力为半劳弱劳动力')

@@ -12,5 +12,5 @@ def process(record: Person):
         return
     if record.objectInfo['是否义务教育阶段适龄儿童少年失学辍学'] == '是':
         if record.objectInfo['义务教育保障'] == '':
-            raise Error(no=os.path.basename(__file__), objectInfo=[record.objectInfo],
+            raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
                         msg='监测对象家庭成员中有义务教育阶段适龄儿童少年失学辍学但未享受义务教育保障')

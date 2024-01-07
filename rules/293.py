@@ -31,5 +31,5 @@ def process(record: Person):
         birthdate = record.idCard[6:14]
         age = calculate_age(birthdate)
         if 16 <= age <= 22:
-            raise Error(no=os.path.basename(__file__), objectInfo=[record.objectInfo],
+            raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
                         msg='16(含)-22周岁(含)含监测对象文化程度为小学及以下')

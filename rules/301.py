@@ -15,5 +15,5 @@ def process(record: Person):
             if member.objectInfo['劳动技能'] != '无劳动力' or member.objectInfo['最低生活保障金'] != '0.00':
                 break
             if index == record.family.member.__len__():
-                raise Error(no=os.path.basename(__file__), objectInfo=[record.objectInfo],
+                raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
                             msg='脱贫户整户无劳动力但家中无享受最低生活保障政策人员')
