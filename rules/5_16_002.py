@@ -14,9 +14,11 @@ def process(record: Person):
             try:
                 yueshouru = float(yueshouru)
             except:
-                raise Error(no='5_16_002', outInfo=[i])
+                raise Error(no='5_16_002', outInfo=record.outInfo)
+                break
 
         if i.get("户类型") == "脱贫户" and (yueshouru > 30000 or yueshouru < 100):
-            raise Error(no='5_16_002', outInfo=[i])
+            raise Error(no='5_16_002', outInfo=record.outInfo)
+            break
 
 
