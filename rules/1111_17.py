@@ -8,7 +8,7 @@ def process(record: Person):
     last=len(record.outInfo)-1
     if record.objectInfo['户类型'] == '脱贫户' and record.outInfo[last]['是否已务工']=='否' and\
             record.outInfo[last]['结束时间']=='' :
-        raise Error(no='1111_17', outInfo=record.outInfo)
+        raise Error(no='1111_17', outInfo=[record.outInfo[last]])
 
 
 

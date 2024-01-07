@@ -16,4 +16,4 @@ def process(record: Person):
             if record.family.member[i].outInfo[last]['务工所在县'] == my_city:
                 T = 0
     if record.objectInfo['监测对象类别'] != '' and "外出务工补贴" in record.objectInfo['就业帮扶'] and T:
-        raise Error(no='5_17_012', outInfo=record.outInfo, objectInfo=[record.objectInfo])
+        raise Error(no='5_17_012', outInfo=[record.outInfo[last]], objectInfo=[record.objectInfo])

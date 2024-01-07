@@ -8,4 +8,4 @@ def process(record: Person):
     last = len(record.outInfo) - 1
     if record.objectInfo['监测对象类别'] != '' and record.outInfo[last]['是否已务工'] == '否' and \
             record.outInfo[last]['结束时间'] == '':
-        raise Error(no='1111_16', outInfo=record.outInfo)
+        raise Error(no='1111_16', outInfo=[record.outInfo[last]])

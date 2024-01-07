@@ -7,4 +7,4 @@ def process(record: Person):
     if record.huInfo  is None:
         return
     if record.huInfo['户类型'] == '脱贫户' and record.huInfo['卫生厕所是否能正常使用']=='' :
-        raise Error(no='3_02_003', huInfo=record.huInfo)
+        raise Error(no='3_02_003', huInfo=[record.huInfo])
