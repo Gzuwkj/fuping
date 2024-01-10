@@ -20,19 +20,14 @@ def process(record: Person):
     #
     # if category is not None and category != '':
     person_id = record.objectInfo.get(person_id_field, None)
+    errors = []
     if person_id is not None:
-        for out_record in record.outInfo:
-            if (
-                    out_record.get(person_id_field, None) == person_id
-                    and out_record.get(work_status_field, None) == '是'
-                    and out_record.get(labor_ability_field, None) in (None, '丧失劳动力', '无劳动力')
-            ):
-                raise Error(no='2_12_004', objectInfo=[record.objectInfo], outInfo=[out_record])
-
-        for preview_record in record.previewInfo:
-            if (
-                    preview_record.get(person_id_field, None) == person_id
-                    and preview_record.get(plan_work_status_field, None) == '是'
-                    and preview_record.get(labor_ability_field, None) in (None, '丧失劳动力', '无劳动力')
-            ):
-                raise Error(no='2_12_004', objectInfo=[record.objectInfo], previewInfo=[preview_record])
+        if (
+                record.outInfo.get(person_id_field, None) == person_id
+                and record.outInfo.get(work_status_field, None) == '是'
+                and record.outInfo.get(labor_ability_field, None) in (None, '丧失劳动力', '无劳动力')
+        ) or (
+                record.previewInfo.get(person_id_field, None) == person_id
+                and record.previewInfo.get(plan_work_status_field, None) == '是'
+                and record.previewInfo.get(labor_ability_field, None) in (None, '丧失劳动力', '无劳动力')):
+            raise Error(no='2_12_004', objectInfo=[record.objectInfo], outInfo=[record.outInfo], previewInfo=[record.previewInfo], msg="已外出务工或计划外出务工防止返贫监测对象人口无（含丧失）劳动能力")
