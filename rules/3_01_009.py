@@ -8,11 +8,13 @@ from datetime import datetime
 
 id2record: Dict[str, List[Person]] = {}
 
-
+result = []
 def process(record: Person):
     if record.outInfo is not None:
-        out_info = record.outInfo
-        is_working = out_info.get("是否已务工")
-        if is_working is None:
-            raise Error(no='3_01_009', outInfo=[out_info])
+        for index, out_info in enumerate(record.outInfo, start=1):
+            is_working = out_info.get("是否已务工")
+            if is_working is None:
+                result.append(out_info)
+        if result:
+            raise Error(no='3_01_009', outInfo=result)
 
