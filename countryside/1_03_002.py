@@ -1,6 +1,5 @@
 from model import Person, DictRecord
 from error import Error
-from typing import Dict, List
 
 
 def process(record: DictRecord):
