@@ -13,7 +13,9 @@ def process(record: Person):
     if record.objectInfo['户类型'] == '脱贫户':
         for index, member in enumerate(record.family.member):
             if member.objectInfo is not None:
-                if member.objectInfo['劳动技能'] != '无劳动力' or member.objectInfo['最低生活保障金'] != '0':
+                if member.objectInfo['劳动技能'] != '无劳动力' and member.objectInfo['劳动技能'] != '丧失劳动力':
+                    break
+                if member.objectInfo['享受低保政策情况'] != '' and member.objectInfo['享受低保政策情况'] != '未享受':
                     break
                 if index == record.family.member.__len__():
                     raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
