@@ -17,8 +17,7 @@ def process(record: Person):
     outInfoRecord = []
     for outInfo in record.outInfo:
         if record.objectInfo.get('户类型') == '脱贫户' \
-                and '公益岗位' in record.objectInfo.get('就业渠道（易地搬迁后扶使用）') \
-                and outInfo.get('就业渠道') == '公益岗位'\
+                and '公益岗位' in outInfo.get('就业渠道') \
                 and getAge(record.objectInfo.get('证件号码')) >= 70:
             outInfoRecord.append(outInfo)
 

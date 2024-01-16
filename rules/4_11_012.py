@@ -6,8 +6,9 @@ def process(record: Person):
         return
 
     if record.objectInfo.get('户类型') == '脱贫户' \
-            and len(record.objectInfo.get('公益岗位帮扶')) == 0\
-            and len(record.objectInfo.get('就业帮扶')) == 0 \
+            and len(record.objectInfo.get('监测对象类别')) != 0 \
+            and (len(record.objectInfo.get('公益岗位帮扶')) != 0\
+                  or len(record.objectInfo.get('就业帮扶')) != 0) \
             and record.objectInfo.get('工资性收入') == 0 \
             and record.objectInfo.get('风险是否已消除0') == '是' :
 

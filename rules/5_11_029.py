@@ -4,12 +4,19 @@ from error import Error
 huIds = set()
 
 def process(record: Person):
+
     if record.objectInfo is None:
         return
 
-    if record.objectInfo.get('致贫/返贫风险1') == '缺劳动力' \
+    if ('缺劳动力' in record.objectInfo.get('致贫/返贫风险1') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险2') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险3') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险4') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险5') ) \
             and record.objectInfo.get('劳动技能') != '无劳动力' \
-            and len(record.family.member) >= 4:
+            and len(record.family.member) >= 4 \
+            and len(record.objectInfo.get('监测对象类别')) != 0:
+
         count = 1
         for member in record.family.member:
             if member.objectInfo.get('劳动技能') != '无劳动力':

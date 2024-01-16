@@ -1,6 +1,5 @@
 from model import Person
 from error import Error
-import pandas as pd
 
 def process(record: Person):
     if record.outInfo is None:
@@ -9,11 +8,9 @@ def process(record: Person):
     outInfoRecord = []
     for outInfo in record.outInfo:
         if outInfo.get('户类型') == '脱贫户' \
+            and '长顺县' != outInfo.get('务工所在县') \
             and ('公益性岗位' in outInfo.get('就业渠道')
-            or '帮扶车间' in outInfo.get('就业渠道')) \
-            and len(record.objectInfo.get('文化程度')) == 0\
-            and len(record.objectInfo.get('在校生状况')) == 0\
-            and len(record.objectInfo.get('失学或辍学原因')) == 0:
+            or '帮扶车间' in outInfo.get('就业渠道')):
             outInfoRecord.append(outInfo)
 
     if len(outInfoRecord) != 0:

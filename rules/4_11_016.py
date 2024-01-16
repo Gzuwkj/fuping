@@ -6,13 +6,14 @@ def process(record: Person):
         return
 
     if record.objectInfo.get('户类型') == '脱贫户' \
-            and record.objectInfo.get('综合保障') == '残疾人补贴' \
-            and record.objectInfo.get('健康状况') != '残疾' :
+            and len(record.objectInfo.get('监测对象类别')) != 0 \
+            and '残疾人补贴' in record.objectInfo.get('综合保障')  \
+            and record.objectInfo.get('证件类型') != '残疾人证' :
 
         bRaise = True
         for member in record.family.member:
             if member.objectInfo is not None:
-                if member.objectInfo.get('健康状况') == '残疾':
+                if member.objectInfo.get('证件类型') == '残疾人证':
                     bRaise = False
 
 
