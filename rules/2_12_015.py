@@ -14,8 +14,8 @@ def process(record: Person):
 
     medical_insurance_resident = record.objectInfo.get("是否参加城乡居民基本医疗保险")
     medical_insurance_worker = record.objectInfo.get("是否参加城镇职工基本医疗保险")
-
-    if medical_insurance_resident == "是" and medical_insurance_worker == "是":
+    category = record.objectInfo.get("监测对象类别")
+    if category != '' and medical_insurance_resident == "是" and medical_insurance_worker == "是":
         raise Error(no='2_12_015', objectInfo=[record.objectInfo],
                     msg="防止返贫监测对象人口同时参加城乡居民和城镇职工基本医疗保险")
 

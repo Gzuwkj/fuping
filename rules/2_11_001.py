@@ -13,8 +13,9 @@ def process(record: Person):
 
     # Rule 2_11_001: 防止返贫监测对象户返（致）贫风险为“因残”但家中无残疾人
     risk_fields = ["致贫/返贫风险1", "致贫/返贫风险2", "致贫/返贫风险3", "致贫/返贫风险4"]
+    category = record.objectInfo.get("监测对象类别")
     if any(
-        record.objectInfo.get(risk_field) == "因残"
+        category != '' and record.objectInfo.get(risk_field) == "因残"
         and not has_disabled_person(record.family)
         for risk_field in risk_fields
     ):
@@ -23,6 +24,6 @@ def process(record: Person):
 
 def has_disabled_person(family: Family) -> bool:
     for member in family.member:
-        if member.objectInfo.get("证件类型") == "残疾人证":
+        if member.objectInfo.get("健康状况") == "残疾":
             return True
     return False

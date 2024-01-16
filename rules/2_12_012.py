@@ -12,16 +12,18 @@ def process(record: Person):
     if record.objectInfo is None or record.family is None:
         return
     flag = 0
-    for member in record.family.member:
-        if member.objectInfo:
-            medical_insurance1 = member.objectInfo.get("是否参加城乡居民基本医疗保险")
-            medical_insurance2 = member.objectInfo.get("是否参加城镇职工基本医疗保险")
+    category = record.objectInfo.get("监测对象类别")
+    if category != '':
+        for member in record.family.member:
+            if member.objectInfo:
+                medical_insurance1 = member.objectInfo.get("是否参加城乡居民基本医疗保险")
+                medical_insurance2 = member.objectInfo.get("是否参加城镇职工基本医疗保险")
 
-            if medical_insurance1 is None and medical_insurance2 is None:
-                flag = 1
-    if flag == 1:
-        raise Error(no='2_12_012', objectInfo=[record.objectInfo],
-                    msg="监测对象家庭成员是否参加城乡居民（职工）基本医疗保险同时为空")
+                if medical_insurance1 is None and medical_insurance2 is None:
+                    flag = 1
+        if flag == 1:
+            raise Error(no='2_12_012', objectInfo=[record.objectInfo],
+                        msg="监测对象家庭成员是否参加城乡居民（职工）基本医疗保险同时为空")
 
 
 
