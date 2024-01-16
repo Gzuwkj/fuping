@@ -3,7 +3,7 @@ from error import Error
 from typing import Dict, List
 from datetime import datetime
 
-
+# 1
 def get_age(birthdate):
     birth_date = datetime.strptime(birthdate, '%Y%m%d')
     current_date = datetime.now()
