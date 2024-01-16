@@ -14,3 +14,4 @@ def process(record: Person):
             if education_level != '' and school_situation != '':
                 raise Error(no='3_12_004', objectInfo=[record.objectInfo])
 
+

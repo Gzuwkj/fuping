@@ -2,6 +2,7 @@ from model import Person, DictRecord
 from error import Error
 
 
+
 def process(record: DictRecord):
     if record is None:
         return

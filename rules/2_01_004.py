@@ -14,8 +14,9 @@ is_female =['之女', '之曾孙女', '之儿媳', '之母', '之婆婆', '之�
 def process(record: Person):
     if record.objectInfo is None:
         return
-    if record.objectInfo.get('性别') == 1 and record.objectInfo.get('与户主关系') not in is_male:
-        raise Error(no='2_01_004', objectInfo=[record.objectInfo])
-    elif record.objectInfo.get('性别') == 2 and record.objectInfo.get('与户主关系') not in is_female:
-        raise Error(no='2_01_004', objectInfo=[record.objectInfo])
+    if record.objectInfo.get('户类型') == '脱贫户':
+        if record.objectInfo.get('性别') == 1 and record.objectInfo.get('与户主关系') not in is_male:
+            raise Error(no='2_01_004', objectInfo=[record.objectInfo])
+        elif record.objectInfo.get('性别') == 2 and record.objectInfo.get('与户主关系') not in is_female:
+            raise Error(no='2_01_004', objectInfo=[record.objectInfo])
 

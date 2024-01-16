@@ -10,3 +10,4 @@ def process(record: Person):
     if detecting_objects != '' and risk == '是':
         if str(record.objectInfo.get('风险消除后是否义务教育阶段适龄儿童少年失学辍学')) == "是":
             raise Error(no='1_11_005', objectInfo=[record.objectInfo])
+

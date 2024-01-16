@@ -12,4 +12,3 @@ def process(record: Person):
 
 
 
-
