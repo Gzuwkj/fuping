@@ -18,12 +18,12 @@ def parse_date(date_str):
 
 # 按时间字段排序
 
-# 外出务工的脱贫人口务工开始时间早于上次务工结束时间
+# 5_12_001-外出务工的防止返贫监测对象人口务工开始时间早于上次务工结束时间
 def process(record: Person):
     if record.objectInfo is None:
         return
     if record.outInfo is not None:
-        if record.objectInfo['户类型'] == '脱贫户':
+        if record.objectInfo['监测对象类别'] != '':
             if record.outInfo.__len__() >= 2:
                 sortTimeOutInfo = sorted(record.outInfo, key=sort_by_time)
                 previous_end_time = parse_date(sortTimeOutInfo[0]["结束时间"])
@@ -32,4 +32,4 @@ def process(record: Person):
                     if start_time <= previous_end_time:
                         raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
                                     outInfo=[record.outInfo[-1]],
-                                    msg='外出务工的脱贫人口务工开始时间早于上次务工结束时间')
+                                    msg='5_12_001-外出务工的防止返贫监测对象人口务工开始时间早于上次务工结束时间')
