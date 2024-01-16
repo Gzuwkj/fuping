@@ -7,13 +7,21 @@ from datetime import datetime
 def process(record: Person):
     if record.objectInfo is None:
         return
-    a = list(record.objectInfo['出生日期'][:-2])
+    if (record.idCard is None) or (len(record.idCard) not in [18, 20, 22]):
+        return
+    elif len(record.idCard) == 18:
+        a = record.idCard[6:-4]
+    elif len(record.idCard) == 20:
+        a = record.idCard[6:-6]
+    elif len(record.idCard) == 22:
+        a = record.idCard[6:-8]
+    a = list(a)
     a.insert(4, '-')
     a.insert(7, '-')
     str_i = ''.join(a)
     age = age_calc(str_i)
     # 5_17_006-脱贫人口硕士研究生小于20岁
-    if record.objectInfo['户类型'] == '脱贫户' and record.objectInfo['在校生状况'] == '硕士研究生及以上' \
+    if record.objectInfo['户类型'] == '脱贫户' and record.objectInfo['在校生状况'] == '硕士生及以上' \
         and age < 20 :
         raise Error(no='5_17_006', objectInfo=[record.objectInfo])
 def age_calc(birth_date):

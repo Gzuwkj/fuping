@@ -8,7 +8,7 @@ def process(record: DictRecord):
         return
     if str(record.get('是否出列')) == '是':
         school_num = str(record.get('村小学（个数）'))
-        if school_num == '' or school_num == '0':
+        if school_num == '':
             raise Error(no='1_03_004', countryInfo=[record])
 
 
