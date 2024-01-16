@@ -17,8 +17,6 @@ def process(record: Person):
     labor_ability_field = '劳动技能'  # 请将这个字段替换为实际的字段名称
     person_id_field = '人编号'  # 请将这个字段替换为实际的字段名称
 
-    category = record.objectInfo.get(category_field, None)
-    #
     # if category is not None and category != '':
     person_id = record.objectInfo.get(person_id_field, None)
     if person_id is not None:

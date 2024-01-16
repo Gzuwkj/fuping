@@ -18,8 +18,8 @@ def process(record: Person):
         return
     birthdate = record.objectInfo.get("出生日期")
     labor_skill = record.objectInfo.get("劳动技能")
-
-    if birthdate and labor_skill:
+    category = record.objectInfo.get("监测对象类别")
+    if category != '' and birthdate and labor_skill:
         age = calculate_age(birthdate)
 
         if age < 16 and labor_skill != "无劳动力":

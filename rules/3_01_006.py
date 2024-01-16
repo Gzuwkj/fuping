@@ -10,8 +10,8 @@ id2record: Dict[str, List[Person]] = {}
 def process(record: Person):
     if record.objectInfo:
         household_type = record.objectInfo.get("户类型")
-        employment_time = record.objectInfo.get("聘用时间")
-        public_service_position = record.objectInfo.get("聘用公益性岗位")
+        employment_time = record.objectInfo.get("公益性岗位(月数)")
+        public_service_position = record.objectInfo.get("公益性岗位")
 
         if household_type == "脱贫户" and employment_time is None and public_service_position is not None:
             raise Error(no='3_01_006', objectInfo=[record.objectInfo],

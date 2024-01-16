@@ -12,6 +12,7 @@ def process(record: Person):
 
     labor_skill_field = '劳动技能'  # 请将这个字段替换为实际的字段名称
     labor_skill = record.objectInfo.get(labor_skill_field, None)
-
-    if labor_skill is None or labor_skill == '':
-        raise Error(no='2_12_001', objectInfo=[record.objectInfo])
+    category = record.objectInfo.get("监测对象类别")
+    if category != '':
+        if labor_skill is None or labor_skill == '':
+            raise Error(no='2_12_001', objectInfo=[record.objectInfo])
