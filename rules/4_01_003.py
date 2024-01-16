@@ -8,6 +8,6 @@ from typing import Dict, List
 def process(record: Person):
     if record.objectInfo is None:
         return
-    if record.objectInfo['户类型'] =='脱贫户':
-        if record.idCard ==None or record.idCard[:6]=='999999':
-             raise Error(no='4_01_003', objectInfo=[record.objectInfo])
+
+    if record.idCard ==None or record.idCard[:6]=='999999':
+        raise Error(no='4_01_003', objectInfo=[record.objectInfo])

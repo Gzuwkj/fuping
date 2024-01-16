@@ -7,13 +7,22 @@ from datetime import datetime
 def process(record: Person):
     if record.objectInfo is None:
         return
-    a = list(record.objectInfo['出生日期'][:-2])
+    if (record.idCard is None) or (len(record.idCard) not in [18, 20, 22]):
+        return
+    elif len(record.idCard) == 18:
+        a = record.idCard[6:-4]
+    elif len(record.idCard) == 20:
+        a = record.idCard[6:-6]
+    elif len(record.idCard) == 22:
+        a = record.idCard[6:-8]
+    a = list(a)
     a.insert(4, '-')
     a.insert(7, '-')
     str_i = ''.join(a)
     age = age_calc(str_i)
     # 5_17_004-脱贫人口高中和中职教育小于15岁和大于20岁
-    if record.objectInfo['户类型'] == '脱贫户' and (record.objectInfo['在校生状况'] == '高中' or record.objectInfo['在校生状况'][:2] == '中职') \
+    if record.objectInfo['户类型'] == '脱贫户' and (record.objectInfo['在校生状况'] in ["普通高中一年级","普通高中二年级","普通高中三年级","中职一年级",\
+        "中职二年级","中职三年级"]) \
         and (age < 15 or age > 20 ):
         raise Error(no='5_17_004', objectInfo=[record.objectInfo])
 
