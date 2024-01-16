@@ -2,7 +2,7 @@ from model import Person
 import pandas as pd
 from error import Error
 from datetime import datetime
-
+'''5_17_005-脱贫人口技师、高职高专、本科及研究生及以上小于18岁'''
 def calculate_age(id_card):
     # 假设身份证号码格式为18位
     birth_date_str = id_card[6:14]  # 截取身份证号码中的出生日期部分
@@ -21,5 +21,5 @@ def process(record: Person):
     if record.objectInfo is None:
         return
     age = calculate_age(record.idCard)
-    if record.objectInfo.get("监测对象类别") != "" and age >= 60 and record.objectInfo.get("劳动技能") in ["普通劳动力", "丧失劳动力", "技能劳动力"]:
-        raise Error(no='2_12_005', objectInfo=[record.objectInfo])
+    if age < 18 and record.objectInfo.get("户类型") == "脱贫户" and record.objectInfo.get("文化程度") in ["技师", "高职高专", "本科及研究生及以上"]:
+        raise Error(no='5_17_005', objectInfo=[record.objectInfo])

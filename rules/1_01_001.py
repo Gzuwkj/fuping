@@ -10,6 +10,6 @@ def process(record: Person):
         return
     if record.idCard in id2record:
         id2record[record.idCard].append(record)
-        raise Error(no='1_01_001', record=id2record[record.idCard])
+        raise Error(no='1_01_001', objectInfo=id2record[record.idCard])
     else:
         id2record[record.idCard] = [record]
