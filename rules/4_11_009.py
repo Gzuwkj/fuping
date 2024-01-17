@@ -6,8 +6,13 @@ def process(record: Person):
     if record.objectInfo is None:
         return
 
-    if record.objectInfo.get('致贫/返贫风险1') == '缺劳动力' \
-            and record.objectInfo.get('风险是否已消除') == '否':
+    if ('缺劳动力' in record.objectInfo.get('致贫/返贫风险1') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险2') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险3') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险4') or \
+        '缺劳动力' in record.objectInfo.get('致贫/返贫风险5') ) \
+            and record.objectInfo.get('风险是否已消除') == '否'\
+            and len(record.objectInfo.get('监测对象类别')) != 0:
 
         bRaise = True
         for member in record.family.member:
