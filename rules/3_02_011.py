@@ -6,7 +6,7 @@ from typing import Dict, List
 def process(record: Person):
     if record.objectInfo is None:
         return
-    if record.objectInfo["户类型"] == "脱贫户":
+    if record.objectInfo["与户主关系"] == "户主":
         hoster = []
         for member in record.family.member:
             if member.objectInfo is None:

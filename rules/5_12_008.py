@@ -9,7 +9,15 @@ def process(record: Person):
     if record.objectInfo is None:
         return
     # 5_12_008-16（含）-60周岁（不含）健康且非在校监测对象人口劳动能力为无(含丧失)劳动能力或半劳弱劳动力
-    a = list(record.objectInfo['出生日期'][:-2])
+    if (record.idCard is None) or (len(record.idCard) not in [18, 20, 22]):
+        return
+    elif len(record.idCard) == 18:
+        a = record.idCard[6:-4]
+    elif len(record.idCard) == 20:
+        a = record.idCard[6:-6]
+    elif len(record.idCard) == 22:
+        a = record.idCard[6:-8]
+    a = list(a)
     a.insert(4, '-')
     a.insert(7, '-')
     str_i = ''.join(a)

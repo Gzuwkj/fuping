@@ -25,11 +25,13 @@ def calculate_age(birthdate):
 
 
 def process(record: Person):
+
     if record.objectInfo is None:
         return
-    if record.objectInfo['文化程度'] == '小学' or record.objectInfo['文化程度'] == '文盲或半文盲':
-        birthdate = record.idCard[6:14]
-        age = calculate_age(birthdate)
-        if 16 <= age <= 22:
-            raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
-                        msg='16(含)-22周岁(含)含监测对象文化程度为小学及以下')
+    if record.objectInfo['监测对象类别'] != '':
+        if record.objectInfo['文化程度'] == '小学' or record.objectInfo['文化程度'] == '文盲或半文盲':
+            birthdate = record.idCard[6:14]
+            age = calculate_age(birthdate)
+            if 16 <= age <= 22:
+                raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
+                            msg='16(含)-22周岁(含)含监测对象文化程度为小学及以下')

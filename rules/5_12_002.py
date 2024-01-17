@@ -17,4 +17,3 @@ def process(record: Person):
         raise Error(no='5_12_002', outInfo=outInfoRecord
                         , msg='县外务工的防止返贫监测对象人口填写了"就业渠道"中的"公益性岗位"和"帮扶车间"')
 
-
