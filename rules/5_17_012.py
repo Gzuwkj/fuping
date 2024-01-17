@@ -9,11 +9,14 @@ def process(record: Person):
     if record.objectInfo['县']==None:
         print(1111)
     my_city = record.objectInfo['县']
-    T = 1
+    T = 0
     for i in range(famliy_num):
         if record.family.member[i].outInfo is not None:
             last = len(record.family.member[i].outInfo) - 1
-            if record.family.member[i].outInfo[last]['务工所在县'] == my_city:
-                T = 0
-    if record.objectInfo['监测对象类别'] != '' and "外出务工补贴" in record.objectInfo['就业帮扶'] and T:
+            if record.family.member[i].outInfo[last]['年度交通费补助'] and record.family.member[i].outInfo[last]['务工所在县'] == my_city  \
+                    and int(record.family.member[i].outInfo[last]['年度交通费补助'])>0:
+                T = 1
+    if  T and record.objectInfo['风险是否已消除']=='否':
         raise Error(no='5_17_012', outInfo=[record.outInfo[last]], objectInfo=[record.objectInfo])
+
+ #record.objectInfo['监测对象类别'] != '' and "外出务工补贴" in record.objectInfo['就业帮扶'] and

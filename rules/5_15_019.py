@@ -9,6 +9,7 @@ id2record: Dict[str, List[Person]] = {}
 def howOld(old):
     now = datetime.datetime(2024,9,1)
     birthday = datetime.datetime(int(old[6:10]),int(old[10:12]),int(old[12:14]))
+
     age = now.year -birthday.year - ((now.month,now.day) < (birthday.month,birthday.day))
     if age >= 18 and age < 60:
         return True

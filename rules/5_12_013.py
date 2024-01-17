@@ -21,5 +21,5 @@ def process(record: Person):
     if record.objectInfo is None:
         return
     age = calculate_age(record.idCard)
-    if age >= 7 and record.objectInfo.get("健康状况") == "健康" and record.objectInfo.get("在校生状况") in ["学龄前儿童", "学前教育"]:
+    if record.objectInfo.get("监测对象类别") != "" and age >= 7 and record.objectInfo.get("健康状况") == "健康" and record.objectInfo.get("在校生状况") in ["学龄前儿童", "学前教育"]:
                             raise Error(no='5_12_013', objectInfo=[record.objectInfo])

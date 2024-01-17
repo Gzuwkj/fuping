@@ -2,6 +2,7 @@ from model import Person
 from error import Error
 from typing import Dict, List
 import os
+
 def process(record: Person):
     if record.objectInfo is None:
         return

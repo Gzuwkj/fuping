@@ -2,6 +2,7 @@ from model import Person
 from error import Error
 from typing import Dict, List
 # id2record: Dict[str, List[Person]] = {}
+
 import datetime
 import os
 
@@ -13,6 +14,7 @@ def howOld(old):
         return True
     else:
         return False
+
 def process(record: Person):
     if record.objectInfo is None:
         return

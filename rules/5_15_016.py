@@ -2,6 +2,7 @@ from model import Person
 from error import Error
 from typing import Dict, List
 import os
+
 import datetime
 id2record: Dict[str, List[Person]] = {}
 
@@ -20,6 +21,7 @@ def process(record: Person):
         return
     # 5_15_023-未消除风险识别时收入填写不合理（识别时工资性收入大于0小于100）
     if howOld(record.objectInfo['证件号码']) and (record.objectInfo['在校生状况'] == '' and record.objectInfo['义务教育阶段未上学原因'] == '') and record.objectInfo['户类型'] == '脱贫户':
+
         raise Error(no=os.path.basename(__file__)[:-3], objectInfo=[record.objectInfo],
                     msg='5_15_016-脱贫户家庭成员义务教育适龄儿童不在校')
 
