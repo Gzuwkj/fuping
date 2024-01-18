@@ -3,12 +3,12 @@ import pandas as pd
 from error import Error
 '''5_16_002-目前务工脱贫人口填写的务工月收入收入大于30000元或者小于100元'''
 
-result = []
+
 def process(record: Person):
     if record.outInfo is None or record.objectInfo is None:
         return
 
-
+    result = []
     for i in record.outInfo:
         yueshouru = i.get("务工月收入")
         if not isinstance(yueshouru, (float, int)):
@@ -19,6 +19,7 @@ def process(record: Person):
 
         if i.get("户类型") == "脱贫户" and (yueshouru > 30000 or yueshouru < 100):
             result.append(i)
-    raise Error(no='5_16_002', outInfo=result)
+    if len(result) > 0:
+        raise Error(no='5_16_002', outInfo=result)
 
 

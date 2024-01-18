@@ -7,12 +7,12 @@ from error import Error
 '''
 
 
-result = []
+
 def process(record: Person):
     if record.outInfo is None:
         return
 
-
+    result = []
     for i in record.outInfo:
         yueshouru = i.get("务工月收入")
         if not isinstance(yueshouru, (float, int)):
@@ -23,5 +23,6 @@ def process(record: Person):
 
         if i.get("监测对象类别") != "" and (yueshouru > 30000 or yueshouru < 100):
             result.append(i)
-    raise Error(no='5_16_001', outInfo=result)
+    if len(result) > 0:
+        raise Error(no='5_16_001', outInfo=result)
 
