@@ -32,4 +32,5 @@ def process(record: Person):
                 "电话号码": phone_number,
                 "其他信息": record.objectInfo
             }]
-    raise Error(no='5_15_022', objectInfo=result)
+    if len(result) > 0:
+        raise Error(no='5_15_022', objectInfo=result)
